@@ -1,7 +1,0 @@
-C:\Users\Lenovo\Desktop\_szkola\algorytmy\kolokwium\Maksimum\Maksimum\bin\Debug\Maksimum.exe.config
-C:\Users\Lenovo\Desktop\_szkola\algorytmy\kolokwium\Maksimum\Maksimum\bin\Debug\Maksimum.exe
-C:\Users\Lenovo\Desktop\_szkola\algorytmy\kolokwium\Maksimum\Maksimum\bin\Debug\Maksimum.pdb
-C:\Users\Lenovo\Desktop\_szkola\algorytmy\kolokwium\Maksimum\Maksimum\obj\Debug\Maksimum.csprojAssemblyReference.cache
-C:\Users\Lenovo\Desktop\_szkola\algorytmy\kolokwium\Maksimum\Maksimum\obj\Debug\Maksimum.csproj.CoreCompileInputs.cache
-C:\Users\Lenovo\Desktop\_szkola\algorytmy\kolokwium\Maksimum\Maksimum\obj\Debug\Maksimum.exe
-C:\Users\Lenovo\Desktop\_szkola\algorytmy\kolokwium\Maksimum\Maksimum\obj\Debug\Maksimum.pdb

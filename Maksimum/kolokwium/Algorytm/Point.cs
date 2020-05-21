@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maksimum
+namespace kolokwium
 {
     public class Point
     {
@@ -19,7 +19,7 @@ namespace Maksimum
 
         public override string ToString()
         {
-            return String.Join(" ", arg.Select(a => a).ToArray());
+            return String.Join(", ", arg.Select(a => a).ToArray());
         }
 
         public static Point getRandomPoint(Random rand, double[] start, double[] stop)

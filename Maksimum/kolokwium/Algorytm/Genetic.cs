@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maksimum
+namespace kolokwium
 {
     class Genetic
     {
         private int gen = 200;
-        private int xCount = 5;
+        private int population = 5;
         private int xMin = -10;
         private int xMax = 10;
         private int xToCross;
@@ -17,25 +17,29 @@ namespace Maksimum
         private double[] xStart;
         private double[] xStop;
         private int dim;
+        public string Result{get;set;}
 
         public Genetic(int dim, Func<double[], double> function, bool Max)
         {
-            this.xToCross = Convert.ToInt32(xCount * 0.9);
+            this.xToCross = Convert.ToInt32(population * 0.9);
             this.dim = dim;
-            Algorithm(function, Max);
+            this.Result = Algorithm(function, Max);
         }
 
-        public Genetic(int dim, Func<double[], double> function, int min, int max, bool Max)
+        public Genetic(int dim, Func<double[], double> function, int min, int max, bool Max, int population, int generations)
         {
             this.xMin = min;
             this.xMax = max;
-            this.xToCross = Convert.ToInt32(xCount * 0.9);
+            this.xToCross = Convert.ToInt32(population * 0.9);
             this.dim = dim;
-            Algorithm(function, Max);
+            this.population = population;
+            this.gen = generations;
+            this.Result = Algorithm(function, Max);
         }
 
-        void Algorithm(Func<double[], double> function, bool Max)
+        string Algorithm(Func<double[], double> function, bool Max)
         {
+            string result="";
             xStart = new double[dim];
             xStop = new double[dim];
 
@@ -45,7 +49,7 @@ namespace Maksimum
                 xStop[i] = xMax;
             }
             Random random = new Random();
-            xList = Enumerable.Range(0, xCount).Select(n => Point.getRandomPoint(random, xStart, xStop)).ToList();
+            xList = Enumerable.Range(0, population).Select(n => Point.getRandomPoint(random, xStart, xStop)).ToList();
             if(Max)
                 xList = sortMax(xList, function);
             else
@@ -61,6 +65,7 @@ namespace Maksimum
                     do
                     {
                         i = random.Next(0, xToCross);
+   
                     } while (i == j);
 
                     if (random.NextDouble() < 0.5)
@@ -73,19 +78,20 @@ namespace Maksimum
                 else
                     xList = sortMin(xList, function);
 
-                xList.RemoveRange(xCount, xList.Count - xCount);
+                xList.RemoveRange(population, xList.Count - population);
 
                 //Console.WriteLine($"\nGeneration: {generation}");
                 //for (int i = 0; i < xList.Count; i++)
                 //    Console.WriteLine($"{i + 1}. f({String.Join(",", xList[i].arg.Select(x => x).ToArray())}) = {function(xList[i].arg)}");
                 //Console.WriteLine();
-
+                result += $"Generacja: {generation + 1}\n";
+                if (Max)
+                    result += $"Fmax({xList[0]}) = {function(xList[0].arg)}\n";
+                else
+                    result += $"Fmin({xList[0]}) = {function(xList[0].arg)}\n";
                 generation++;
             }
-            if (Max)
-                Console.WriteLine($"Fmax({xList[0]}) = {function(xList[0].arg)}");
-            else
-                Console.WriteLine($"Fmax({xList[0]}) = {function(xList[0].arg)}");
+            return result;
         }
 
 
